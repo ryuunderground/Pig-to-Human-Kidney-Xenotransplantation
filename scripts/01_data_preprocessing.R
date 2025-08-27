@@ -3,11 +3,14 @@
 ##########################
 
 ##### import libraries #####
-library(Seurat)
-library(dplyr)
-library(ggplot2)
-library(cowplot)
-library(rhdf5)
+pkgs = c("Seurat", "dplyr", "ggplot2", "cowplot", "rhdf5")
+for (pkg in pkgs) {
+  if(!requireNamespace(pkg,quietly = TRUE)) {
+    BiocManager::install(pkg)
+  }
+  library(pkg, character.only = TRUE)
+}
+
 
 ##### Step 1: Find Homologous Genes between Human and Pig #####
 # Starting database is downloadable from: https://download.cncb.ac.cn/hgd/homolog_gene/Pig_Human_Homolog_gene.txt.gz
